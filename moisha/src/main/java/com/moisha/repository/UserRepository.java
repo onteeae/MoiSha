@@ -7,7 +7,7 @@ import com.moisha.model.User;
 
 @Repository
 public interface UserRepository {
-  public User selectUserByUserId(
+  User selectUserByUserId(
     @Param("userId") String userId
   );
 }
