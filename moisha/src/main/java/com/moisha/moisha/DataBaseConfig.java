@@ -55,7 +55,6 @@ public class DataBaseConfig {
   }
 
   @Bean
-  @Primary
   SqlSessionFactoryBean sqlSessionFactory() throws IOException {
     SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
     sessionFactoryBean.setDataSource(dataSource());
@@ -63,7 +62,7 @@ public class DataBaseConfig {
     sessionFactoryBean.setTypeHandlersPackage("com.moisha.common.handler");
     sessionFactoryBean.setFailFast(true);
     sessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/mybatis-config.xml"));
-    sessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:/mapper/**/*Mapper.xml"));
+    sessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/*Mapper.xml"));
     return sessionFactoryBean;
   }
 }
