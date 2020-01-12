@@ -1,0 +1,7 @@
+package com.moisha.model;
+
+import lombok.Data;
+
+@Data
+public class User {
+}
