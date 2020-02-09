@@ -2,26 +2,28 @@ package com.moisha.controller;
 
 import javax.websocket.server.PathParam;
 
+import com.moisha.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.moisha.service.ArticleService;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("articles/")
 public class ArticleController {
   @Autowired
   private ArticleService articleService;
 
-  @RequestMapping("user/{userId}/interest/{interestNo}")
-  public void getArticles(
-    @PathParam("userId") String userId
-    , @PathParam("interestNo") Long interestNo
-    , @RequestParam("offset") Integer offset
-    , @RequestParam("pageSize") Integer pageSize
-  ) {
-    articleService.getArticlesByInterestAndAuthor(userId, interestNo, offset, pageSize);
+  @RequestMapping(value = "user/{userId}/interest/{interestNo}", method = RequestMethod.GET)
+  public List<Article> getArticles(
+          @PathVariable("userId") String userId
+          , @PathVariable("interestNo") Long interestNo
+          , @RequestParam(value = "offset", defaultValue = "0") Integer offset
+          , @RequestParam(value = "pageSize", defaultValue = "20") Integer pageSize) {
+    List<Article> articles = articleService.getArticlesByInterestAndAuthor(userId, interestNo, offset, pageSize);
+    return articles;
   }
 }

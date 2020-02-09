@@ -11,6 +11,7 @@ import com.moisha.model.Article;
 public interface ArticleRepository {
   public List<Article> selectArticlesByUser(
     @Param("userId") String userId
+    , @Param("interestNo") Long interestNo
     , @Param("offset") Integer offset
     , @Param("pageSize") Integer pageSize
   );

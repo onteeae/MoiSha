@@ -17,7 +17,8 @@ public class ArticleService {
 
   @Transactional
   public List<Article> getArticlesByInterestAndAuthor(String userId, Long interestNo, Integer offset, Integer pageSize) {
-    List<Article> articles = articleRepository.selectArticlesByUser(userId, offset, pageSize);
-    return articles.stream().filter(article -> article.getInterestNo().equals(interestNo)).collect(Collectors.toList());
+    List<Article> articles = articleRepository.selectArticlesByUser(userId, interestNo, offset, pageSize);
+    return articles;
   }
+
 }
