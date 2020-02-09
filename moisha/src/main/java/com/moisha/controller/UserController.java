@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moisha.model.User;
+import com.moisha.model.request.AuthRequest;
 import com.moisha.model.response.JwtResponse;
+import com.moisha.moisha.security.UserDetail;
 import com.moisha.moisha.security.jwt.JwtUtils;
 import com.moisha.service.UserService;
 
@@ -46,22 +48,17 @@ public class UserController {
     return user;
   }
   @RequestMapping(value="/auth/signIn", method=RequestMethod.POST)
-  public ResponseEntity<?> authenticateUser(@RequestBody User user) {
-
+  public ResponseEntity<?> authenticateUser(@RequestBody AuthRequest authRequest) {
     Authentication authentication = authenticationManager.authenticate(
-      new UsernamePasswordAuthenticationToken(user.getUserId(), user.getUserPassword()));
+      new UsernamePasswordAuthenticationToken(authRequest.getUserId(), authRequest.getUserPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
     String jwt = jwtUtils.generateJwtToken(authentication);
 
-    User userDetails = (User)authentication.getPrincipal();
-    List<String> roles = userDetails.getAuthorities().stream()
-      .map(item -> item.getAuthority())
-      .collect(Collectors.toList());
+    UserDetail userDetails = (UserDetail)authentication.getPrincipal();
 
     return ResponseEntity.ok(new JwtResponse(jwt,
       userDetails.getUsername(),
-      userDetails.getEmail(),
-      roles));
+      userDetails.getEmail()));
   }
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.moisha.model.User;
+import com.moisha.moisha.security.UserDetail;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -23,11 +23,11 @@ public class JwtUtils {
   @Value("${moisha.app.jwt.secretKey}")
   private String jwtSecret;
 
-  @Value("${moisha.app.jwt.jwtExpirationMs}")
+  @Value("${moisha.app.jwt.expirationMs}")
   private int jwtExpirationMs;
 
   public String generateJwtToken(Authentication authentication) {
-    User userPrincipal = (User) authentication.getPrincipal();
+    UserDetail userPrincipal = (UserDetail) authentication.getPrincipal();
 
     return Jwts.builder()
       .setSubject((userPrincipal.getUsername()))

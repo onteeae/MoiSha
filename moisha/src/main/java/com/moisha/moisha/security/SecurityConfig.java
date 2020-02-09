@@ -16,7 +16,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.moisha.moisha.security.jwt.AuthEntryPointJwt;
 import com.moisha.moisha.security.jwt.AuthTokenFilter;
-import com.moisha.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -25,7 +24,7 @@ import com.moisha.service.UserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  UserService userService;
+  UserDetailService userDetailService;
 
   @Autowired
   private AuthEntryPointJwt unauthorizedHandler;
@@ -37,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-    authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    authenticationManagerBuilder.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
   }
 
   @Bean

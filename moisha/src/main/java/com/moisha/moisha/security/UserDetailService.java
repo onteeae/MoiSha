@@ -1,7 +1,6 @@
-package com.moisha.service;
+package com.moisha.moisha.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,17 +10,12 @@ import com.moisha.model.User;
 import com.moisha.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserDetailService implements UserDetailsService {
   @Autowired
-  UserRepository userRepository;
-
-  public User getUser(String userId) {
-    User user = userRepository.selectUserByUserId(userId);
-    return user;
+  private UserRepository userRepository;
+  @Override
+  public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    User user = userRepository.selectUserByUserId(s);
+    return UserDetail.from(user);
   }
-
-  public User getUserAuth(String userId, String password) {
-    return userRepository.selectUserByUserIdAndPassword(userId, password);
-  }
-  
 }
