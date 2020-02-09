@@ -10,4 +10,9 @@ public interface UserRepository {
   User selectUserByUserId(
     @Param("userId") String userId
   );
+
+  User selectUserByUserIdAndPassword(
+    @Param("userId") String userId
+    , @Param("password") String password
+  );
 }

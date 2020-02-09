@@ -3,10 +3,21 @@
 <mapper namespace="com.moisha.repository.UserRepository">
   <select id="selectUserByUserId" resultType="user">
   SELECT
-    *
+    user.user_id
   FROM
     user
   WHERE
     user_id = #{userId}
 </select>
+
+  <select id="selectUserByUserIdAndPassword" resultType="user">
+    SELECT
+      user.user_id
+      , user.user_password
+    FROM
+      user
+    WHERE
+      user_id = #{userId}
+      AND user_password = password(#{password});
+  </select>
 </mapper>

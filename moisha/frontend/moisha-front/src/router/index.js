@@ -1,15 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import List from '@/components/Article/List'
+// import List from '@/components/Article/List'
+import Main from '@/components/Main/Main'
+import SignIn from '@/components/SignIn/SignIn'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/List',
-      name: 'List',
-      component: List
+      path: '/',
+      name: 'Main',
+      component: Main
+    },
+    {
+      path: '/signIn',
+      name: 'SignIn',
+      component: SignIn
     }
   ]
 })

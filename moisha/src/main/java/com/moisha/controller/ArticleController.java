@@ -12,9 +12,9 @@ import com.moisha.service.ArticleService;
 @Controller
 @RequestMapping("articles/")
 public class ArticleController {
+
   @Autowired
   private ArticleService articleService;
-
   @RequestMapping("user/{userId}/interest/{interestNo}")
   public void getArticles(
     @PathParam("userId") String userId

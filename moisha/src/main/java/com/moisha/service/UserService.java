@@ -12,7 +12,11 @@ public class UserService {
   @Autowired
   UserRepository userRepository;
 
-  public User getUserInfo(String userId) {
+  public User getUser(String userId) {
     return userRepository.selectUserByUserId(userId);
+  }
+
+  public User getUserAuth(String userId, String password) {
+    return userRepository.selectUserByUserIdAndPassword(userId, password);
   }
 }
