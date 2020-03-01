@@ -26,7 +26,7 @@
     <div ngbDropdown class="d-inline-block">
       <button class="btn btn-outline dropdownButton" id="dropdownBasic1" ngbDropdownToggle></button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item" @click="logout()">로그아웃</button>
+        <button class="dropdown-item" @click.prevent="logOut()">로그아웃</button>
       </div>
     </div>
   </nav>
@@ -47,7 +47,10 @@ export default {
   },
   components: {FontAwesomeIcon},
   methods: {
-    logout () {}
+    logOut () {
+      this.$store.dispatch('auth/logout')
+      this.$router.push('/login')
+    }
   },
   mounted () {
     this.$root.$on('loggedIn', data => {
