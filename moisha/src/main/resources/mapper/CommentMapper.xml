@@ -1,0 +1,12 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moisha.repository.CommentRepository">
+  <select id="selectCommentsByArticleNo" resultType="comment">
+    SELECT
+      *
+    FROM
+      comment
+    WHERE
+      article_no = #{articleNo}
+  </select>
+</mapper>

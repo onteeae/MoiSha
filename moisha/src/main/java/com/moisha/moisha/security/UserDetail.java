@@ -35,6 +35,8 @@ public class UserDetail implements UserDetails {
     return this.userId;
   }
 
+  public String getUserEmail() { return this.email;}
+
   @Override
   public boolean isAccountNonExpired() {
     return true;

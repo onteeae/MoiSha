@@ -1,18 +1,18 @@
 <template>
   <div class="Main">
-    하이하이~!
+    <ArticleFeed></ArticleFeed>
   </div>
 </template>
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
-import SignIn from '@/components/SignIn/SignIn'
+import ArticleFeed from '../Article/ArticleFeed'
 
 export default {
   components: {
     FontAwesomeIcon,
-    SignIn
+    ArticleFeed
   },
   props: {
   },
@@ -24,3 +24,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>

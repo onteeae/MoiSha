@@ -1,24 +1,26 @@
 <template>
   <div id="app">
-  <div class="container">
-    <router-view/>
-  </div>
+    <Header></Header>
+    <SideBar></SideBar>
+    <div class="content">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
+import Header from './components/Shared/Header'
+import SideBar from './components/Shared/SideBar'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {SideBar, Header}
 }
+
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .content {
+    padding: 150px;
+  }
 </style>

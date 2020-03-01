@@ -18,13 +18,12 @@ public class ArticleController {
   @Autowired
   private ArticleService articleService;
 
-  @RequestMapping(value = "user/{userId}/interest/{interestNo}", method = RequestMethod.GET)
+  @RequestMapping(value = "interest/{interestNo}", method = RequestMethod.GET)
   public List<Article> getArticles(
-          @PathVariable("userId") String userId
-          , @PathVariable("interestNo") Long interestNo
+          @PathVariable("interestNo") Long interestNo
           , @RequestParam(value = "offset", defaultValue = "0") Integer offset
           , @RequestParam(value = "pageSize", defaultValue = "20") Integer pageSize) {
-    List<Article> articles = articleService.getArticlesByInterestAndAuthor(userId, interestNo, offset, pageSize);
+    List<Article> articles = articleService.getArticlesByInterest(interestNo, offset, pageSize);
     return articles;
   }
 }

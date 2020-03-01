@@ -70,12 +70,12 @@ export default {
   },
   created () {
     if (this.loggedIn) {
-      this.$router.push('/Main').catch(e => alert('e1'))
+      this.$router.push('/Main')
     }
   },
   computed: {
     loggedIn () {
-      return this.$store.state.auth.status.loggedIn
+      return `this.$store.state.auth.status.loggedIn`
     }
   },
   methods: {
@@ -89,6 +89,7 @@ export default {
         if (this.user.email && this.user.password) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
+              this.$root.$emit('loggedIn', null)
               this.$router.push('/Main').catch(e => alert(e))
             },
             error => {
